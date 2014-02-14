@@ -86,7 +86,7 @@ namespace :tire do
 
   namespace :import do
     desc import_model_desc
-    task :model do
+    task :model => :environment do
       if ENV['CLASS'].to_s == ''
         puts '='*90, 'USAGE', '='*90, import_model_desc, ""
         exit(1)
@@ -115,7 +115,7 @@ namespace :tire do
     end
 
     desc import_all_desc
-    task :all do
+    task :all => :environment do
       dir    = ENV['DIR'].to_s != '' ? ENV['DIR'] : Rails.root.join("app/models")
       params = eval(ENV['PARAMS'].to_s) || {}
 
